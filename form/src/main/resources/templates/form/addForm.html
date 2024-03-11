@@ -40,7 +40,7 @@
             <div class="form-check">
 <!--                item.open = null -->
 <!--                <input type="checkbox" id="open" name="open" class="form-check-input">-->
-<!--                    구문 추가시  false로 default 설정       -->
+<!--                    구문 추가시  _open:on -> item.open:false 로 default 설정       -->
 <!--                <input type="hidden" name="_open" value="on"/>-->
 <!--                문법 사용시 자동으로 바로위 구문 자동 추가-->
 <!--                <input type="checkbox" id="open"  th:field="${item.open}" class="form-check-input">-->
@@ -48,6 +48,42 @@
                 <label for="open" class="form-check-label">판매 오픈</label>
             </div>
         </div>
+
+        <!-- multi checkbox -->
+        <div>
+            <div>등록 지역</div>
+        <!--            기준점 잡아주는 곳 ${regions} 가 기준점이다.      -->
+            <div th:each="region : ${regions}" class="form-check form-check-inline">
+<!--                <input type="checkbox" th:field="*{regions}" th:value="${region.key}" class="form-check-input"> -->
+                <input type="checkbox" th:field="${item.regions}" th:value="${region.key}" class="form-check-input">
+                <label th:for="${#ids.prev('regions')}"
+                       th:text="${region.value}" class="form-check-label">서울</label>
+            </div>
+        </div>
+
+        <!-- radio button -->
+        <div>
+            <div>상품 종류</div>
+            <div th:each="type : ${itemTypes}" class="form-check form-check-inline">
+                <input type="radio" th:field="*{itemType}" th:value="${type.name()}"
+                       class="form-check-input">
+                <label th:for="${#ids.prev('itemType')}" th:text="${type.description}"
+                       class="form-check-label">
+                    BOOK
+                </label>
+            </div>
+        </div>
+
+        <!-- SELECT -->
+        <div>
+            <div>배송 방식</div>
+            <select th:field="*{deliveryCode}" class="form-select">
+                <option value="">==배송 방식 선택==</option>
+                <option th:each="deliveryCode : ${deliveryCodes}" th:value="${deliveryCode.code}"
+                        th:text="${deliveryCode.displayName}">FAST</option>
+            </select>
+        </div>
+        <hr class="my-4">
 
         <div class="row">
             <div class="col">
