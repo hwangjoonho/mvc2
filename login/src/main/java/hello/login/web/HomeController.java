@@ -62,7 +62,7 @@ public class HomeController {
 
 //    @GetMapping("/")
     public String homeLoginV3(HttpServletRequest request, Model model) {
-
+                                    // 처음 들어온 사용자일 경우에 따라 false
         HttpSession session = request.getSession(false);
         if (session == null) {
             return "home";
@@ -94,7 +94,7 @@ public class HomeController {
         return "loginHome";
     }
 
-    @GetMapping("/")
+//    @GetMapping("/")
     public String homeLoginV3ArgumentResolver(@Login Member loginMember, Model model) {
 
         //세션에 회원 데이터가 없으면 home

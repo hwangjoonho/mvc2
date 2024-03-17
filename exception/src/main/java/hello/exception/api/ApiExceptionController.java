@@ -32,17 +32,21 @@ public class ApiExceptionController {
         return new MemberDto(id, "hello " + id);
     }
 
-    @GetMapping("/api/response-status-ex1")
+    @GetMapping("/api/response-status-ex1")     //@ResponseStatus 사용
     public String responseStatusEx1() {
         throw new BadRequestException();
     }
 
     @GetMapping("/api/response-status-ex2")
     public String responseStatusEx2() {
+        //@ResponseStatus 는 개발자가 직접 변경할 수 없는 예외에는 적용할 수 없다.
+        // 애노테이션을 직접 넣어야 하는데, 내가 코드를 수정할 수 없는 라이브러리의 예외 코드 같은 곳에는 적용할 수 없다.
+        //추가로 애노테이션을 사용하기 때문에 조건에 따라 동적으로 변경하는 것도 어렵다
+//        => 그때 사용
         throw new ResponseStatusException(HttpStatus.NOT_FOUND, "error.bad", new IllegalArgumentException());
     }
 
-    @GetMapping("/api/default-handler-ex")
+    @GetMapping("/api/default-handler-ex")          // 웹쪽 typeMisMatch에러는 Spring에서 400에러로 변환해줌
     public String defaultException(@RequestParam Integer data) {
         return "ok";
     }

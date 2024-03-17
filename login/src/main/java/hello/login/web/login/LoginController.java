@@ -143,6 +143,7 @@ public class LoginController {
 
     @PostMapping("/logout")
     public String logoutV3(HttpServletRequest request) {
+                                                    // getSession(false) : 세션이 없으면 새로운 세션을 생성하지 않는다. null 을 반환한다
         HttpSession session = request.getSession(false);
         if (session != null) {
             session.invalidate();

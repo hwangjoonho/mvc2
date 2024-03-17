@@ -39,6 +39,7 @@ public class ErrorPageController {
         return "error-page/500";
     }
 
+    // API 통신 시 예외처리                            // client가 받는 타입
     @RequestMapping(value = "/error-page/500", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Map<String, Object>> errorPage500Api(
             HttpServletRequest request, HttpServletResponse response) {
