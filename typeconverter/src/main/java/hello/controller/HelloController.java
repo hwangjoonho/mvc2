@@ -1,4 +1,4 @@
-package hello.typeconverter.controller;
+package hello.controller;
 
 import hello.typeconverter.type.IpPort;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,6 +24,10 @@ public class HelloController {
         return "ok";
     }
 
+    /*
+     * @RequestParam 은 @RequestParam 을 처리하는 ArgumentResolver 인
+     * RequestParamMethodArgumentResolver 에서 ConversionService 를 사용해서 타입을 변환
+     */
     @GetMapping("/ip-port")
     public String ipPort(@RequestParam IpPort ipPort) {
         System.out.println("ipPort IP = " + ipPort.getIp());

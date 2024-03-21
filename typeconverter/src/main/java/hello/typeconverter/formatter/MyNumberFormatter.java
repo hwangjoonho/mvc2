@@ -17,11 +17,13 @@ public class MyNumberFormatter implements Formatter<Number> {
         //"1,000" -> 1000
         NumberFormat format = NumberFormat.getInstance(locale);
         return format.parse(text);
+        // text (문자) ----NumberFormat.getInstance(locale).parse() ---> 숫자로
     }
 
     @Override
     public String print(Number object, Locale locale) {
         log.info("object={}, locale={}", object, locale);
         return NumberFormat.getInstance(locale).format(object);
+        // NumberFormat 객체 -----NumberFormat.getInstance(locale).format ---> 문자로
     }
 }

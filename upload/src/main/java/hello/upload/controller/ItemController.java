@@ -44,7 +44,7 @@ public class ItemController {
         //데이터베이스에 저장
         Item item = new Item();
         item.setItemName(form.getItemName());
-        item.setAttachFile(attachFile);
+         item.setAttachFile(attachFile);
         item.setImageFiles(storeImageFiles);
         itemRepository.save(item);
 
@@ -77,10 +77,12 @@ public class ItemController {
         log.info("uploadFileName={}", uploadFileName);
 
         String encodedUploadFileName = UriUtils.encode(uploadFileName, StandardCharsets.UTF_8);
+
+        // 파일이 브라우저에서 열리는 것이 아닌 다운이 되도록 추가 설정 필요
         String contentDisposition = "attachment; filename=\"" + encodedUploadFileName + "\"";
 
         return ResponseEntity.ok()
-                .header(HttpHeaders.CONTENT_DISPOSITION, contentDisposition)
+                .header(HttpHeaders.CONTENT_DISPOSITION, contentDisposition)    // 다운 되도록 헤더 추가
                 .body(resource);
     }
 

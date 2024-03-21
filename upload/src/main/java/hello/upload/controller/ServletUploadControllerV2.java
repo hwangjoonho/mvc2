@@ -44,12 +44,13 @@ public class ServletUploadControllerV2 {
             log.info("==== PART ====");
             log.info("name={}", part.getName());
             Collection<String> headerNames = part.getHeaderNames();
+            // parts도 헤더와 바디로 나눠진다.
             for (String headerName : headerNames) {
                 log.info("header {}: {}", headerName, part.getHeader(headerName));
             }
             //편의 메서드
             //content-disposition; filename
-            log.info("submittedFilename={}", part.getSubmittedFileName());
+            log.info("submittedFilename={}", part.getSubmittedFileName()); // file-name
             log.info("size={}", part.getSize()); //part body size
 
             //데이터 읽기

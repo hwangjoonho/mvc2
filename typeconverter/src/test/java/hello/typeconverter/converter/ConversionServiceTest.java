@@ -18,7 +18,7 @@ public class ConversionServiceTest {
         conversionService.addConverter(new StringToIpPortConverter());
         conversionService.addConverter(new IpPortToStringConverter());
 
-        //사용
+        //사용 - convert 메소드 만 사용 <- 동시 상속
         assertThat(conversionService.convert("10", Integer.class)).isEqualTo(10);
         assertThat(conversionService.convert(10, String.class)).isEqualTo("10");
 

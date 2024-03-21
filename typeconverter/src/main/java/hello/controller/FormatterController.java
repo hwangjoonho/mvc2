@@ -1,4 +1,4 @@
-package hello.typeconverter.controller;
+package hello.controller;
 
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;

@@ -7,6 +7,7 @@
 <body>
 
 <form th:object="${form}" th:method="post">
+    <h3>th:field 는 앞서 설명했듯이 id , name 를 출력하는 등 다양한 기능이 있는데, 여기에 컨버전 서비스도 함께 적용</h3>
     th:field <input type="text" th:field="*{ipPort}"><br/>
     th:value <input type="text" th:value="*{ipPort}">(보여주기 용도)<br/>
     <input type="submit"/>
