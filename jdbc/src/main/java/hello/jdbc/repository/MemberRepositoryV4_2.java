@@ -20,7 +20,12 @@ import java.util.NoSuchElementException;
 public class MemberRepositoryV4_2 implements MemberRepository {
 
     private final DataSource dataSource;
+
+
     private final SQLExceptionTranslator exTranslator;
+    // 스프링은 데이터 접근 계층에 대한 수십 가지 예외를 정리해서 일관된 예외 계층을 제공
+//스프링은 예외 변환기를 통해서 SQLException 의 ErrorCode 에 맞는 적절한 스프링 데이터 접근 예외로 변환
+
 
     public MemberRepositoryV4_2(DataSource dataSource) {
         this.dataSource = dataSource;

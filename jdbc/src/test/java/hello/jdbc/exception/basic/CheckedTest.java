@@ -7,6 +7,9 @@ import static org.assertj.core.api.Assertions.*;
 
 @Slf4j
 public class CheckedTest {
+    /*
+     * Checked VS UnChecked 의 기준은 컴파일러 체크
+     */
 
     @Test
     void checked_catch() {
