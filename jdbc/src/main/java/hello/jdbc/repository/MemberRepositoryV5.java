@@ -30,6 +30,7 @@ public class MemberRepositoryV5 implements MemberRepository {
     public Member findById(String memberId) {
         String sql = "select * from member where member_id = ?";
         return template.queryForObject(sql, memberRowMapper(), memberId);
+
     }
 
     @Override
@@ -44,6 +45,7 @@ public class MemberRepositoryV5 implements MemberRepository {
         template.update(sql, memberId);
     }
 
+        /* sql을 실행하고 반환된 결과값이 ( resultset , rowNum ) 형태이다. */
     private RowMapper<Member> memberRowMapper() {
         return (rs, rowNum) -> {
             Member member = new Member();

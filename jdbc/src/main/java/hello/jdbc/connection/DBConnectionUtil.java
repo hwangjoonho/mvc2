@@ -11,6 +11,8 @@ import static hello.jdbc.connection.ConnectionConst.*;
 @Slf4j
 public class DBConnectionUtil {
 
+    // DataSource 로 인해 필요 없어지게 된다.
+
     public static Connection getConnection() {
         try {
             Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);

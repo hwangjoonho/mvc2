@@ -28,7 +28,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
  * 트랜잭션 - @Transactional AOP
  */
 @Slf4j
-@SpringBootTest
+@SpringBootTest // SpringBoot Container 열어주어 Spring 기능 사용 가능하도록 Open
 class MemberServiceV3_3Test {
 
     public static final String MEMBER_A = "memberA";
@@ -41,7 +41,12 @@ class MemberServiceV3_3Test {
     private MemberServiceV3_3 memberService;
 
     @TestConfiguration
+    // AOP와 같은 스프링 기능을 사용하려면 설정 구성요소들을 Bean으로 등록해 환경을 만들어주어야한다.
+    //테스트 안에서 내부 설정 클래스를 만들어서 annot 사용 시, 스프링 부트가 자동으로 만들어주는 빈들에 추가로 필요한 스프링 빈들을 등록하고 테스트를 수행할 수 있다.
     static class TestConfig {
+        /**
+         * 사용되는 곳이 없는 메서드들은 Spring자체에서 가져가 사용한다. 즉, 필수요소들을 모두 Bean으로 등록해주어야한다.
+         */
         @Bean
         DataSource dataSource() {
             return new DriverManagerDataSource(URL, USERNAME, PASSWORD);

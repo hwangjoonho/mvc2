@@ -8,6 +8,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 
+import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
 
@@ -18,6 +19,7 @@ import java.sql.SQLException;
 @RequiredArgsConstructor
 public class MemberServiceV3_1 {
 
+//    private final DataSource dataSource;
     private final PlatformTransactionManager transactionManager;
     private final MemberRepositoryV3 memberRepository;
 

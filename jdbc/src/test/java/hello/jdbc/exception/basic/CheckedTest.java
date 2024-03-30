@@ -7,6 +7,9 @@ import static org.assertj.core.api.Assertions.*;
 
 @Slf4j
 public class CheckedTest {
+    /*
+     * Checked VS UnChecked 의 기준은 컴파일러 체크
+     */
 
     @Test
     void checked_catch() {
@@ -22,7 +25,7 @@ public class CheckedTest {
     }
 
     /**
-     * Exception을 상속받은 예외는 체크 예외가 된다.
+     * ****** Exception을 상속받은 예외는 체크 예외가 된다. ***********
      */
     static class MyCheckedException extends Exception {
         public MyCheckedException(String message) {

@@ -9,6 +9,9 @@ import java.sql.SQLException;
 import static org.assertj.core.api.Assertions.*;
 
 public class CheckedAppTest {
+    /*
+     * Checked VS UnChecked 의 기준은 컴파일러 체크
+     */
 
     @Test
     void checked() {

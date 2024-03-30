@@ -69,6 +69,10 @@ public class UnCheckedAppTest {
         }
     }
 
+    /*  -----------------------------------------------------------
+     * 아래가 공통부분이 된다.
+     */
+
     static class RuntimeConnectException extends RuntimeException {
         public RuntimeConnectException(String message) {
             super(message);

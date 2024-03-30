@@ -25,6 +25,7 @@ class MemberRepositoryV1Test {
 //        DriverManagerDataSource dataSource = new DriverManagerDataSource(URL, USERNAME, PASSWORD);
 
         //커넥션 풀링
+//        HikariDataSource dataSource = new HikariDataSource();
         HikariDataSource dataSource = new HikariDataSource();
         dataSource.setJdbcUrl(URL);
         dataSource.setUsername(USERNAME);
@@ -54,7 +55,7 @@ class MemberRepositoryV1Test {
                 .isInstanceOf(NoSuchElementException.class);
 
         try {
-            Thread.sleep(1000);
+            Thread.sleep(10000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

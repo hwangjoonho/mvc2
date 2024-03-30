@@ -11,9 +11,12 @@ import java.util.NoSuchElementException;
 
 /**
  * JDBC - DataSource 사용, JdbcUtils 사용
+ * DataSource는 커넥션을 획득하는 방법을 추상화 하는 인터페이스이다.
+ * 이 인터페이스의 핵심 기능은 커넥션 조회
+ * DriverManager 커넥션 로직 ---> HikariCP 커넥션 풀 로직 변경시 DataSource 갈아끼우기면 쉽게 가능
  */
 @Slf4j
-public class MemberRepositoryV1 {
+public class  MemberRepositoryV1 {
 
     private final DataSource dataSource;
 
@@ -109,9 +112,12 @@ public class MemberRepositoryV1 {
             pstmt = con.prepareStatement(sql);
             pstmt.setString(1, memberId);
             pstmt.executeUpdate();
+//            Thread.sleep(1000);
         } catch (SQLException e) {
             log.error("db error", e);
             throw e;
+//        } catch (InterruptedException e) {
+//            throw new RuntimeException(e);
         } finally {
             close(con, pstmt, null);
         }

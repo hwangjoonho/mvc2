@@ -13,6 +13,7 @@ import java.util.NoSuchElementException;
  * 트랜잭션 - 트랜잭션 매니저
  * DataSourceUtils.getConnection()
  * DataSourceUtils.releaseConnection()
+ * 트랜잭션 동기화 저장소(TransactionSync)는 *** 작업 스레드마다 독립적으로 분리하여 Connection을 저장, 관리하기 때문에 ***** 멀티스레드 환경에서 충돌날 염려 없다
  */
 @Slf4j
 public class MemberRepositoryV3 {
