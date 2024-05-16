@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+                <!--     namespace에는 인터페이스명 및 위치를 적어준다-->
 <mapper namespace="hello.itemservice.repository.mybatis.ItemMapper">
 
+<!--    여기서는 ItemMapper에서의 파라미터가 하나라서 #{param} 형식-->
     <insert id="save" useGeneratedKeys="true" keyProperty="id">
         insert into item (item_name, price, quantity)
         values (#{itemName}, #{price}, #{quantity})
     </insert>
-
+<!--    여기서는 ItemMapper의 파라미터가 2개 이상기에 #{DTO.parma}으로 적어줘야한다.  @Param을 사용했기에 ...-->
     <update id="update">
         update item
         set item_name=#{updateParam.itemName},
@@ -15,7 +17,7 @@
             quantity=#{updateParam.quantity}
         where id = #{id}
     </update>
-
+<!--                resultType 부분에 aliasing이 적용된다. 풀 경로 필요 -->
     <select id="findById" resultType="Item">
         select id, item_name, price, quantity
         from item
@@ -31,6 +33,9 @@
             </if>
             <if test="maxPrice != null">
                 and price &lt;= #{maxPrice}
+<!--            <![CDATA[
+                and price <= #{maxPrice}
+                ]]>                             -->
             </if>
         </where>
     </select>

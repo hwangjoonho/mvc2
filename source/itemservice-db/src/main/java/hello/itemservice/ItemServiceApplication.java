@@ -32,7 +32,7 @@ public class ItemServiceApplication {
 
 	@Bean
 	@Profile("local")
-	public TestDataInit testDataInit(ItemRepository itemRepository) {
+	public TestDataInit testDataInit(ItemRe pository itemRepository) {
 		return new TestDataInit(itemRepository);
 	}
 

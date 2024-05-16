@@ -1,37 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="6507eeb3-d632-4d2f-821d-2534d017d3ae" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/form/src/main/java/hello/itemservice/domain/item/DeliveryCode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/form/src/main/java/hello/itemservice/domain/item/ItemType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/thymeleaf-basic/src/main/java/hello/thymeleaf/basic/TemplateController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/thymeleaf-basic/src/main/resources/templates/basic/attribute.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/thymeleaf-basic/src/main/resources/templates/basic/basic-objects.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/thymeleaf-basic/src/main/resources/templates/basic/block.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/thymeleaf-basic/src/main/resources/templates/basic/comments.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/thymeleaf-basic/src/main/resources/templates/basic/condition.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/thymeleaf-basic/src/main/resources/templates/basic/date.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/thymeleaf-basic/src/main/resources/templates/basic/each.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/thymeleaf-basic/src/main/resources/templates/basic/javascript.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/thymeleaf-basic/src/main/resources/templates/basic/link.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/thymeleaf-basic/src/main/resources/templates/basic/literal.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/thymeleaf-basic/src/main/resources/templates/basic/operation.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/thymeleaf-basic/src/main/resources/templates/template/fragment/footer.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/thymeleaf-basic/src/main/resources/templates/template/fragment/fragmentMain.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/thymeleaf-basic/src/main/resources/templates/template/layout/base.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/thymeleaf-basic/src/main/resources/templates/template/layout/layoutMain.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/thymeleaf-basic/src/main/resources/templates/template/layoutExtend/layoutExtendMain.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/thymeleaf-basic/src/main/resources/templates/template/layoutExtend/layoutFile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/thymeleaf-basic/src/main/java/hello/thymeleaf/basic/BasicController.java" beforeDir="false" afterPath="$PROJECT_DIR$/thymeleaf-basic/src/main/java/hello/thymeleaf/basic/BasicController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/itemservice-db/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/source/itemservice-db/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/itemservice-db/src/main/java/hello/itemservice/ItemServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/source/itemservice-db/src/main/java/hello/itemservice/ItemServiceApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/itemservice-db/src/main/java/hello/itemservice/config/JdbcTemplateV1Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/source/itemservice-db/src/main/java/hello/itemservice/config/JdbcTemplateV1Config.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/itemservice-db/src/main/java/hello/itemservice/repository/jdbctemplate/JdbcTemplateItemRepositoryV2.java" beforeDir="false" afterPath="$PROJECT_DIR$/source/itemservice-db/src/main/java/hello/itemservice/repository/jdbctemplate/JdbcTemplateItemRepositoryV2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/itemservice-db/src/main/java/hello/itemservice/repository/jdbctemplate/JdbcTemplateItemRepositoryV3.java" beforeDir="false" afterPath="$PROJECT_DIR$/source/itemservice-db/src/main/java/hello/itemservice/repository/jdbctemplate/JdbcTemplateItemRepositoryV3.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/itemservice-db/src/main/java/hello/itemservice/repository/mybatis/ItemMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/source/itemservice-db/src/main/java/hello/itemservice/repository/mybatis/ItemMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/itemservice-db/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/source/itemservice-db/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/itemservice-db/src/main/resources/hello/itemservice/repository/mybatis/ItemMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/source/itemservice-db/src/main/resources/hello/itemservice/repository/mybatis/ItemMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/itemservice-db/src/test/java/hello/itemservice/domain/ItemRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/source/itemservice-db/src/test/java/hello/itemservice/domain/ItemRepositoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/itemservice-db/src/test/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/source/itemservice-db/src/test/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 5
-}]]></component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
   <component name="ProjectId" id="2bvwcXteF7W19Ch7hHVjDKMlQJq" />
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
@@ -40,6 +38,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/jhhwa/Desktop/Study/mvc2"
   }

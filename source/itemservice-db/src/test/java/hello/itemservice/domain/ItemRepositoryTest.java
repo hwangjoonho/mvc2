@@ -19,7 +19,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 
 @Slf4j
-@Transactional
+@Transactional // 테스트에서 사용시 자동 격리 프로세스 동작
 @SpringBootTest
 class ItemRepositoryTest {
 
@@ -33,7 +33,7 @@ class ItemRepositoryTest {
 
     @BeforeEach
     void beforeEach() {
-        //트랜잭션 시작
+        //트랜잭션 시작 - 반복 / 격리
         status = transactionManager.getTransaction(new DefaultTransactionDefinition());
     }
 */
