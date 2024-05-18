@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @RequiredArgsConstructor
 public class MyBatisConfig {
-
+    // MyBatis 모듈이 DataSource, transactionManager 등 필수 요소 세팅해 준다.
     private final ItemMapper itemMapper;
 
     @Bean

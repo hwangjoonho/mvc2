@@ -25,7 +25,7 @@ import java.util.Optional;
 public class JdbcTemplateItemRepositoryV1 implements ItemRepository {
 
     private final JdbcTemplate template;
-
+    // jdbc 사용시 필수 설정 요소
     public JdbcTemplateItemRepositoryV1(DataSource dataSource) {
         this.template = new JdbcTemplate(dataSource);
     }
@@ -33,6 +33,10 @@ public class JdbcTemplateItemRepositoryV1 implements ItemRepository {
     @Override
     public Item save(Item item) {
         String sql = "insert into item(item_name, price, quantity) values (?,?,?)";
+        /**
+         * KeyHolder 와 connection.prepareStatement(sql, new String[]{"id"}) 를 사용해서 id 를
+         * 지정해주면 INSERT 쿼리 실행 이후에 데이터베이스에서 생성된 ID 값을 조회할 수 있다
+         */
         KeyHolder keyHolder = new GeneratedKeyHolder();
         template.update(connection -> {
             //자동 증가 키
@@ -62,6 +66,9 @@ public class JdbcTemplateItemRepositoryV1 implements ItemRepository {
     public Optional<Item> findById(Long id) {
         String sql = "select id, item_name, price, quantity from item where id = ?";
         try {
+            /**
+             * template.queryForObject() === 결과 로우가 하나일 때 사용한다
+             */
             Item item = template.queryForObject(sql, itemRowMapper(), id);
             return Optional.of(item);
         } catch (EmptyResultDataAccessException e) {
@@ -75,6 +82,11 @@ public class JdbcTemplateItemRepositoryV1 implements ItemRepository {
         Integer maxPrice = cond.getMaxPrice();
 
         String sql = "select id, item_name, price, quantity from item";
+        /**
+         * template.query() === 결과가 하나 이상일 때 사용한다.
+         * RowMapper 는 데이터베이스의 반환 결과인 ResultSet 을 객체로 변환한다.
+         * 결과가 없으면 빈 컬렉션을 반환한다.
+         */
         //동적 쿼리
         if (StringUtils.hasText(itemName) || maxPrice != null) {
             sql += " where";
@@ -100,6 +112,10 @@ public class JdbcTemplateItemRepositoryV1 implements ItemRepository {
         return template.query(sql, itemRowMapper(), param.toArray());
     }
 
+    /**
+     * RowMapper 는 데이터베이스의 반환 결과인 ResultSet 을 객체로 변환한다
+     * 데이터베이스의 조회 결과를 객체로 변환할 때 사용
+     */
     private RowMapper<Item> itemRowMapper() {
         return ((rs, rowNum) -> {
             Item item = new Item();

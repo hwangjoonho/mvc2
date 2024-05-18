@@ -8,6 +8,11 @@ import javax.persistence.*;
 @Entity
 public class Item {
 
+    /**
+     * 분석을 시작할때는 Domain 분석부터 시작한다.
+     * Domain -> Repository(ServiceImpl)-> Interface 파라미터 부분을 통한 DTO -> ServiceImpl-> Service -> Controller -> 화면 front
+     */
+
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
