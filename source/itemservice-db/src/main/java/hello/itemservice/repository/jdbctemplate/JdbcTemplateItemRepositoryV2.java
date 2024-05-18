@@ -32,7 +32,8 @@ import java.util.Optional;
  * Map
  *
  * BeanPropertyRowMapper
- *
+ * 문제 : 동적 쿼리 문제
+ * 해결 : V1에서의 위치홀더 순서에 의한 모호함을 해결하기위해 NamedParameterJdbcTemplate을 활용해 named 기준으로 모호함을 해결한다.
  */
 @Slf4j
 public class JdbcTemplateItemRepositoryV2 implements ItemRepository {
@@ -48,6 +49,7 @@ public class JdbcTemplateItemRepositoryV2 implements ItemRepository {
         String sql = "insert into item(item_name, price, quantity) " +
                 "values (:itemName, :price, :quantity)";
 
+        // 위 (:param) 부분에 바인딩 해주는 로직
         SqlParameterSource param = new BeanPropertySqlParameterSource(item);
 
         KeyHolder keyHolder = new GeneratedKeyHolder();
@@ -63,7 +65,8 @@ public class JdbcTemplateItemRepositoryV2 implements ItemRepository {
         String sql = "update item " +
                 "set item_name=:itemName, price=:price, quantity=:quantity " +
                 "where id=:id";
-
+        // id 파라미터가 DTO에 없기에 BeanPropertySqlParameterSource 사용 불가 -> id 부분 직접 추가 필요 -> MapSqlParameterSource 사용
+        // 위 (:param) 부분에 바인딩 해주는 로직 - 이런 방식도 있다.~~
         SqlParameterSource param = new MapSqlParameterSource()
                 .addValue("itemName", updateParam.getItemName())
                 .addValue("price", updateParam.getPrice())
@@ -77,7 +80,8 @@ public class JdbcTemplateItemRepositoryV2 implements ItemRepository {
     public Optional<Item> findById(Long id) {
         String sql = "select id, item_name, price, quantity from item where id = :id";
         try {
-            Map<String, Object> param = Map.of("id", id);
+            // 위 (:param) 부분에 바인딩 해주는 로직 - 이런 방식도 있다.~~ id name값으로 기준 잡고 value값 (:param) 부분에 투하
+            Map<String, Object> param = Map.of("id", id); 
             Item item = template.queryForObject(sql, param, itemRowMapper());
             return Optional.of(item);
         } catch (EmptyResultDataAccessException e) {
@@ -90,6 +94,7 @@ public class JdbcTemplateItemRepositoryV2 implements ItemRepository {
         String itemName = cond.getItemName();
         Integer maxPrice = cond.getMaxPrice();
 
+        // ItemSearchCond DTO에 있는 값으로 param이 자동 매칭 변환 ( cond 값을 sql에서 쓸 수 있도록 변환 )
         SqlParameterSource param = new BeanPropertySqlParameterSource(cond);
 
         String sql = "select id, item_name, price, quantity from item";
@@ -116,6 +121,8 @@ public class JdbcTemplateItemRepositoryV2 implements ItemRepository {
     }
 
     private RowMapper<Item> itemRowMapper() {
-        return BeanPropertyRowMapper.newInstance(Item.class); //camel 변환 지원
+        // Db에서 SQL 연산 후 나온 결과 값인 resultSet과 DTO 자동 매칭 변환
+        return BeanPropertyRowMapper.newInstance(Item.class); 
+        // DB에서는 언더스코어 사용 vs JAVA에서는 카멜case 사용 -> BeanPropertyRowMapper 등장으로 camel 변환 지원
     }
 }

@@ -24,6 +24,9 @@ import java.util.Optional;
 
 /**
  * SimpleJdbcInsert
+ *
+ * 문제 :
+ * 해결 : SimpleJdbcinsert
  */
 @Slf4j
 public class JdbcTemplateItemRepositoryV3 implements ItemRepository {
@@ -35,13 +38,14 @@ public class JdbcTemplateItemRepositoryV3 implements ItemRepository {
         this.template = new NamedParameterJdbcTemplate(dataSource);
         this.jdbcInsert = new SimpleJdbcInsert(dataSource)
                 .withTableName("item")
-                .usingGeneratedKeyColumns("id");
-//                .usingColumns("item_name", "price", "quantity"); //생략 가능
+                .usingGeneratedKeyColumns("id");    // : key 를 생성하는 PK 컬럼 명을 지정
+//                .usingColumns("item_name", "price", "quantity"); //생략 가능 <- 생성 시점에 테이블 메타 데이터 DB에서 읽고 필드 자동 인지
     }
 
     @Override
     public Item save(Item item) {
         SqlParameterSource param = new BeanPropertySqlParameterSource(item);
+        // 위에서 키 값이 Generate라는 정보를 보내서 param으로만 DB insert 완료 -> return은 key(PK) 값
         Number key = jdbcInsert.executeAndReturnKey(param);
         item.setId(key.longValue());
         return item;

@@ -36,7 +36,7 @@ public class ItemServiceApplication {
 		return new TestDataInit(itemRepository);
 	}
 
-/* *
+/*
 	@Bean
 	@Profile("test")
 	public DataSource dataSource() {

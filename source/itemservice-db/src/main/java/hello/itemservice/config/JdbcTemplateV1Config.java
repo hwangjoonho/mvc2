@@ -15,7 +15,9 @@ import javax.sql.DataSource;
 @RequiredArgsConstructor
 public class JdbcTemplateV1Config {
 
-    private final DataSource dataSource;
+//    인터페이스가 가리키는 자식 객체가 정해진다. Application 실행 부분에 설정 필요 @Import(JdbcTemplateV1Config.class)
+
+      private final DataSource dataSource;
 
     @Bean
     public ItemService itemService() {
