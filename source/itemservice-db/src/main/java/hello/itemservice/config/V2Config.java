@@ -32,7 +32,7 @@ public class V2Config {
         return new ItemQueryRepositoryV2(em);
     }
 
-    @Bean
+    @Bean       //test Data 구동 위해 작성됨
     public ItemRepository itemRepository() {
         return new JpaItemRepositoryV3(em);
     }

@@ -15,8 +15,8 @@ import java.util.Optional;
 @Repository
 @Transactional
 @RequiredArgsConstructor
+                                    // JPA 사용 어댑터 활용 파트 = 논리적 설계 부분
 public class JpaItemRepositoryV2 implements ItemRepository {
-
     private final SpringDataJpaItemRepository repository;
 
     @Override
@@ -44,7 +44,8 @@ public class JpaItemRepositoryV2 implements ItemRepository {
 
         if (StringUtils.hasText(itemName) && maxPrice != null) {
 //            return repository.findByItemNameLikeAndPriceLessThanEqual("%" + itemName + "%", maxPrice);
-            return repository.findItems("%" + itemName + "%", maxPrice);
+            return repository.findItems( itemName, maxPrice);               //
+//            return repository.findItems("%" + itemName + "%", maxPrice);
         } else if (StringUtils.hasText(itemName)) {
             return repository.findByItemNameLike("%" + itemName + "%");
         } else if (maxPrice != null) {

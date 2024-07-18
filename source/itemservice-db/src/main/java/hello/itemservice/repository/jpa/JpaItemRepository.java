@@ -18,8 +18,8 @@ import java.util.Optional;
 @Slf4j
 @Repository
 @Transactional
+                                // 단순 JPA 사용 파트
 public class JpaItemRepository implements ItemRepository {
-
     private final EntityManager em;
 
     public JpaItemRepository(EntityManager em) {
