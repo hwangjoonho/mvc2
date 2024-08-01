@@ -15,6 +15,7 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 @Transactional
+                    //          QueryDSL + JPA 동시 사용 파트
 public class ItemServiceV2 implements ItemService {
 
     private final ItemRepositoryV2 itemRepositoryV2;

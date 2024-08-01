@@ -21,13 +21,16 @@ import static hello.itemservice.domain.QItem.*;
 
 @Repository
 @Transactional
+        // QueryDSL 사용 파트
 public class JpaItemRepositoryV3 implements ItemRepository {
 
     private final EntityManager em;
+//      QueryDSL 사용할 경우 Factory 필요
     private final JPAQueryFactory query;
 
     public JpaItemRepositoryV3(EntityManager em) {
         this.em = em;
+//        Factory에 Entity 넣어준다.
         this.query = new JPAQueryFactory(em);
     }
 
@@ -57,13 +60,14 @@ public class JpaItemRepositoryV3 implements ItemRepository {
         Integer maxPrice = cond.getMaxPrice();
 
         QItem item = QItem.item;
+           // 조건 추가시 사용 ======================
         BooleanBuilder builder = new BooleanBuilder();
         if (StringUtils.hasText(itemName)) {
             builder.and(item.itemName.like("%" + itemName + "%"));
         }
         if (maxPrice != null) {
             builder.and(item.price.loe(maxPrice));
-        }
+        }//==============================================
 
         List<Item> result = query
                 .select(item)

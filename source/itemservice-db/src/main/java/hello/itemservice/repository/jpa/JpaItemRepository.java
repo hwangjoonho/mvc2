@@ -19,7 +19,7 @@ import java.util.Optional;
 @Repository
 @Transactional      // jpa의 모든 data 변경은 transactional 안에서 이루어진다.
 public class JpaItemRepository implements ItemRepository {
-
+    // 단순 JPA 사용 파트 부분
     private final EntityManager em;
 
     public JpaItemRepository(EntityManager em) {

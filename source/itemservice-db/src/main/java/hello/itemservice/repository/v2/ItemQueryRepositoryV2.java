@@ -14,6 +14,7 @@ import java.util.List;
 import static hello.itemservice.domain.QItem.*;
 
 @Repository
+            //          JPA 및 QueryDSL 사용 파트
 public class ItemQueryRepositoryV2 {
 
     private final JPAQueryFactory query;

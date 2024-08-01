@@ -4,6 +4,7 @@ import hello.itemservice.domain.Item;
 import hello.itemservice.repository.ItemRepository;
 import hello.itemservice.repository.ItemSearchCond;
 import hello.itemservice.repository.ItemUpdateDto;
+import hello.itemservice.repository.jpa.SpringDataJpaItemRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -12,17 +13,18 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-                       public class ItemServiceV1 implements ItemService {
+public class ItemServiceV1 implements ItemService {
 
-        private final ItemRepository itemRepository;
+    private final ItemRepository itemRepository;
+//    private final SpringDataJpaItemRepository springDataJpaItemRepository; // TradeOff 기준 설정 후 구현
+    
+    @Override
+    public Item save(Item item) {
+        return itemRepository.save(item);
+    }
 
-        @Override
-        public Item save(Item item) {
-            return itemRepository.save(item);
-        }
-
-        @Override
-        public void update(Long itemId, ItemUpdateDto updateParam) {
+    @Override
+    public void update(Long itemId, ItemUpdateDto updateParam) {
         itemRepository.update(itemId, updateParam);
     }
 
