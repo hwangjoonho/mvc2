@@ -9,8 +9,13 @@ import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.SQLException;
+
 @SpringBootTest
 public class RollbackTest {
+    //   Rollback 관련 스프링 트랜잭션의 기본 정책
+//    언체크 예외인 RuntimeException , Error 와 그 하위 예외가 발생하면 롤백한다.
+//    체크 예외인 Exception 과 그 하위 예외들은 커밋한다
 
     @Autowired RollbackService service;
 
@@ -50,7 +55,7 @@ public class RollbackTest {
             throw new RuntimeException();
         }
 
-        //체크 예외 발생: 커밋
+        //체크 예외 발생: *** ' 커밋 ' ***
         @Transactional
         public void checkedException() throws MyException {
             log.info("call checkedException");
@@ -65,7 +70,7 @@ public class RollbackTest {
         }
     }
 
-    static class MyException extends Exception {
+    static class MyException extends SQLException {
     }
 
 }

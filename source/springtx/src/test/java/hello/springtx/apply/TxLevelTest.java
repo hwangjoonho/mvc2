@@ -31,6 +31,9 @@ public class TxLevelTest {
     @Slf4j
     @Transactional(readOnly = true)
     static class LevelService {
+        // JPA(하이버네이트)는 읽기 전용 트랜잭션의 경우 커밋 시점에 플러시를 호출하지 않는다.
+        // 읽기 전용이니 변경에 사용되는 플러시를 호출할 필요가 없다. 추가로 변경이 필요 없으니 변경 감지를 위한 스냅샷 객체도 생성하지 않는다
+        // *** 보통 jpa 사용 시 읽기 관련된 부분에서는 read-only 옵션을 true로 주는게 좋다.
 
         @Transactional(readOnly = false)
         public void write() {
