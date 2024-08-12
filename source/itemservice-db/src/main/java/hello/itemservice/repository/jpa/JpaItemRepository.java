@@ -17,9 +17,9 @@ import java.util.Optional;
 
 @Slf4j
 @Repository
-@Transactional
-                                // 단순 JPA 사용 파트
+@Transactional      // jpa의 모든 data 변경은 transactional 안에서 이루어진다.
 public class JpaItemRepository implements ItemRepository {
+    // 단순 JPA 사용 파트 부분
     private final EntityManager em;
 
     public JpaItemRepository(EntityManager em) {
@@ -48,7 +48,7 @@ public class JpaItemRepository implements ItemRepository {
 
     @Override
     public List<Item> findAll(ItemSearchCond cond) {
-        String jpql = "selectxxx i from Item i";
+        String jpql = "select i from Item i";
 
         Integer maxPrice = cond.getMaxPrice();
         String itemName = cond.getItemName();

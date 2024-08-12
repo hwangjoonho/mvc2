@@ -25,6 +25,7 @@ import static hello.itemservice.domain.QItem.*;
 public class JpaItemRepositoryV3 implements ItemRepository {
 
     private final EntityManager em;
+
 //      QueryDSL 사용할 경우 Factory 필요
     private final JPAQueryFactory query;
 
