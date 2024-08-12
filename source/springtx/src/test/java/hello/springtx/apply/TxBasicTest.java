@@ -44,7 +44,7 @@ public class TxBasicTest {
 
         @Transactional
         public void tx() {
-            log.info("call tx");
+            log.info("call tx");        // 트랜잭션 적용 여부 확인
             boolean txActive = TransactionSynchronizationManager.isActualTransactionActive();
             log.info("tx active={}", txActive);
         }
