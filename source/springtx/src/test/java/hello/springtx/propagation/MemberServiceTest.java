@@ -112,7 +112,7 @@ class MemberServiceTest {
         assertTrue(memberRepository.find(username).isEmpty());
         assertTrue(logRepository.find(username).isEmpty());
     }
-
+//-----------------------------------------------------------------------------------
     /**
      * memberService    @Transactional:ON
      * memberRepository @Transactional:ON
@@ -125,7 +125,8 @@ class MemberServiceTest {
 
         //when
         assertThatThrownBy(() -> memberService.joinV2(username))
-                .isInstanceOf(UnexpectedRollbackException.class);
+                .isInstanceOf(UnexpectedRollbackException.class);       // 이미 롤백 터진 상황에서 exception잡아도 롤백 복구 불가능 <- 
+                                                                                    // 원본 트랙잭션 매니저에서 트랜잭션 동기화 매니저의 rollbackOnly 마크를 확인하기때문
 
         //when: 모든 데이터가 롤백된다.
         assertTrue(memberRepository.find(username).isEmpty());
@@ -146,7 +147,9 @@ class MemberServiceTest {
         memberService.joinV2(username);
 
         //when: member 저장, log 롤백
-        assertTrue(memberRepository.find(username).isPresent());
+//        assertTrue(memberRepository.find(username).isPresent());        // 만약 안쪽 joinV2에서 exception throw 안잡을 경우 그냥 commit 됨
+        assertTrue(memberRepository.find(username).isEmpty());        // 만약 안쪽 joinV2에서 exception throw 안잡을 경우 그냥 commit 됨
+//        assertTrue(logRepository.find(username).isPresent());
         assertTrue(logRepository.find(username).isEmpty());
     }
 

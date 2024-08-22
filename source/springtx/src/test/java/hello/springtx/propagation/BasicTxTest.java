@@ -78,7 +78,8 @@ public class BasicTxTest {
         log.info("트랜잭션2 롤백");
         txManager.rollback(tx2);
     }
-
+//-----------------------------------------------------------------------------------------------------------------
+//      내부 트랜잭션이 이미 존재하는 외부 트랜잭션에 참여한다. 실제 물리 트랜잭션은 외부것 하나이다. 
     @Test
     void inner_commit() {
         log.info("외부 트랜잭션 시작");
@@ -88,8 +89,10 @@ public class BasicTxTest {
         log.info("내부 트랜잭션 시작");
         TransactionStatus inner = txManager.getTransaction(new DefaultTransactionAttribute());
         log.info("inner.isNewTransaction()={}", inner.isNewTransaction());
-        log.info("내부 트랜잭션 커밋");
-        txManager.commit(inner);
+//   ------------------------ 이곳에서는 아무일도 일어나지 않는다. ------------------------------ㄱ
+                        log.info("내부 트랜잭션 커밋");
+                        txManager.commit(inner);
+//              ㄴ--------------------------------------------------------------------------------
 
         log.info("외부 트랜잭션 커밋");
         txManager.commit(outer);
@@ -109,7 +112,7 @@ public class BasicTxTest {
         log.info("외부 트랜잭션 롤백");
         txManager.rollback(outer);
     }
-
+    //    --------------외부 커밋 / 내부 롤백 시------------rollbackOnly=true 마크-------최종적으로 롤백됨--------------
     @Test
     void inner_rollback() {
         log.info("외부 트랜잭션 시작");
@@ -124,7 +127,7 @@ public class BasicTxTest {
         assertThatThrownBy(() -> txManager.commit(outer))
                 .isInstanceOf(UnexpectedRollbackException.class);
     }
-
+// -----------------------------(내부에서) 새로운 트랜잭션을 꺼내 사용하고 싶을 때 = 외부/내부 서로 상관 X ----------------------------ㄴ---
     @Test
     void inner_rollback_requires_new() {
         log.info("외부 트랜잭션 시작");
@@ -133,7 +136,7 @@ public class BasicTxTest {
 
         log.info("내부 트랜잭션 시작");
         DefaultTransactionAttribute definition = new DefaultTransactionAttribute();
-        definition.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRES_NEW);
+        definition.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRES_NEW);  // PROPAGATION_REQUIRES_NEW 거의 사용 안함
         TransactionStatus inner = txManager.getTransaction(definition);
         log.info("inner.isNewTransaction()={}", inner.isNewTransaction()); //true
 

@@ -24,6 +24,9 @@ public class MemberRepository {
     public Optional<Member> find(String username) {
         return em.createQuery("select m from Member m where m.username = :username", Member.class)
                 .setParameter("username", username)
-                .getResultList().stream().findAny();
+
+//                중요****---------------------------------------------------------------------------------------
+                .getResultList().stream().findAny();    // getSingleResult 사용시 결과가 없을 경우 NoResultException이 터짐
+//        ---------------------------------------------------------------------------------------
     }
 }
