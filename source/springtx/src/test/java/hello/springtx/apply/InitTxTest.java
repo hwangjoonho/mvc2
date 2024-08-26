@@ -15,7 +15,7 @@ import javax.annotation.PostConstruct;
 
 @SpringBootTest
 public class InitTxTest {
-
+                    //          PostConstruct 어노테이션으로 인한 Transactional 주의사항
     @Autowired Hello hello;
 
     @Test
@@ -35,7 +35,7 @@ public class InitTxTest {
     static class Hello {
 
         @PostConstruct
-        @Transactional
+        @Transactional              // Transactional은 초기화 시점에 PostConstruct로 인해 동작하지 않는다.
         public void initV1() {
             boolean isActive = TransactionSynchronizationManager.isActualTransactionActive();
             log.info("Hello init @PostConstruct tx active={}", isActive);

@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.Optional;
 
 @Slf4j
@@ -14,6 +15,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class LogRepository {
 
+//    @PersistenceContext       이전 스프링에서는 EntityManager 사용시 꼭 넣어줘야했다.
     private final EntityManager em;
 
     @Transactional(propagation = Propagation.REQUIRES_NEW)

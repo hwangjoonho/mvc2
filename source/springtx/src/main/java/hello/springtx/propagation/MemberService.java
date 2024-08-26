@@ -13,7 +13,7 @@ public class MemberService {
     private final MemberRepository memberRepository;
     private final LogRepository logRepository;
 
-    @Transactional
+//    @Transactional
     public void joinV1(String username) {
         Member member = new Member(username);
         Log logMessage = new Log(username);
@@ -37,12 +37,12 @@ public class MemberService {
         log.info("== memberRepository 호출 종료 ==");
 
         log.info("== logRepository 호출 시작 ==");
-        try {
             logRepository.save(logMessage);
-        } catch (RuntimeException e) {
-            log.info("log 저장에 실패했습니다. logMessage={}", logMessage.getMessage());
-            log.info("정상 흐름 반환");
-        }
+//        try {
+//        } catch (RuntimeException e) {
+//            log.info("log 저장에 실패했습니다. logMessage={}", logMessage.getMessage());
+//            log.info("정상 흐름 반환");
+//        }
 
         log.info("== logRepository 호출 종료 ==");
     }
